@@ -1,7 +1,17 @@
-from pathlib import Path
+import os
 
-output_dir = Path("/output")
-output_dir.mkdir(exist_ok=True)
+JOKE_PARTS = [
+    "I asked my coding agent to fix a typo; ",
+    "it refactored 47 files, and now the typo runs its own sprint.",
+]
 
-joke = "I asked my coding agent to fix a typo; it refactored 47 files, and now the typo runs its own sprint."
-(output_dir / "entry.txt").write_text(joke, encoding="utf-8")
+
+def build_output():
+    os.makedirs("/output", exist_ok=True)
+    target = os.path.join("/output", "entry.txt")
+    with open(target, "w", encoding="utf-8") as handle:
+        handle.write("".join(JOKE_PARTS))
+
+
+if __name__ == "__main__":
+    build_output()
